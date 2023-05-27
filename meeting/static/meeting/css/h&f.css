@@ -1,0 +1,46 @@
+.gradient {
+    background-image: linear-gradient(to right, #292e60 , #10193e);
+}
+
+.header {}
+.header__row {
+    display: flex;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+}
+.header__menu {
+    display: flex;
+    justify-content: center;
+}
+.header__link {
+    margin: 0 40px;
+    transition: transform 0.1s linear;
+}
+.header__link:hover {
+    transform: scale(1.1);
+}
+.header__link a {
+    color: #ffffff;
+}
+.header__link a:hover {   
+	color: rgb(232, 219, 123);
+}
+.header__link a:active{
+	color: rgb(255, 225, 0);;
+}
+
+.footer {}
+.footer__row {
+	display: flex;
+	height: 65px;
+	justify-content: center;
+	align-items: center;
+}
+.footer__text {
+	color: #ffffff;
+	font-size: 14px;
+}
+.footer__text a {
+    color: #ffffff;
+}

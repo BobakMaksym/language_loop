@@ -1,0 +1,87 @@
+{% extends 'meeting/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="title gradient">
+        <div class="container">
+            <div class="title__row">
+                <div class="title__text">
+                    <h1>Language Loop</h1>
+                </div>
+            </div>
+            <div class="title__row">
+                <div class="title__text">
+                    <h2><em>free</em> speaking club</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="menu">
+            <div class="col-sm-2 sm-auto">
+            	<div class="dropdown">
+            		<button class="btn btn_dark-blue" type="button"  data-bs-toggle="dropdown">select_language</button>
+            		<div class="dropdown-menu">
+                        {% for language in languages %}
+                            <a href="{{ language.get_absolute_url }}" class="dropdown-item">{{ language.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#    <div class="menu">#}
+{#        <div class="container">#}
+{#            {% for language in languages %}#}
+{#                <a href="{{ language.get_absolute_url }}" class="menu__link">{{ language.name }}</a>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+
+    <div class="meeting">
+        <div class="container">
+            {% for meeting in meetings %}
+                <div class="meeting__board">
+                    <div class="meeting__schedule">
+                        <div class="meeting__schedule_row">
+                            <p>{{ meeting.time }}</p>
+                            <img src="{{ meeting.language.flag_pic.url }}" alt="flag" class="flag">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="meeting__img meeting-offset">
+                        <img src="{{ meeting.picture.url }}" alt="pic">
+                    </div>
+                    <div class="meeting__club_name meeting-offset">
+                        <p>{{ meeting.title }}</p>
+                    </div>
+                    <div class="meeting__club_location meeting-offset">
+                        <p><span class="meeting__span">{{ meeting.location }}</p>
+                    </div>
+                    <div class="meeting__club_description meeting-offset">
+                        <p>{{ meeting.description }}</p>
+                    </div>
+                    <div class="meeting__map meeting-offset">
+                        <iframe class="meeting__map meeting__map_properties"
+                                src="{{ meeting.location_link }}"
+                                width="600" height="200"></iframe>
+                    </div>
+                    <div class="meeting__contact meeting-offset">
+                        <p>Contacts</p>
+                        <hr>
+                        <a href="{{ meeting.contacts }}" target="_blank">
+                            <img class="social_network_logo" alt="facebook"
+                                 src="{% static 'meeting/img/social_network/facebook_logo.png' %}">
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
