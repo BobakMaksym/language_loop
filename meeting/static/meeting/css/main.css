@@ -145,3 +145,48 @@ hr {
 .line-height {
     line-height: 1.7;
 }
+
+/* pagination */
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+}
+.pagination a.active {
+      background-color: #4CAF50;
+      color: white;
+}
+.pagination a:hover:not(.active) {
+      background-color: #484b82;
+      color: aliceblue;
+}
+.step-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-links a {
+    margin: 0 10px;
+}
+.current {
+    flex: 1;
+    text-align: center;
+}
+@media (max-width: 768px) {
+        .step-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .step-links a {
+          margin: 5px 0;
+    }
+}
