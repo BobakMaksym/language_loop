@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Post, Language
 
@@ -14,8 +15,22 @@ menu = [
 
 
 def index(request):
-    meetings = Post.objects.all()
+    meetings_list = Post.objects.all()
     languages = Language.objects.annotate(total=Count('post')).filter(total__gt=0)
+    
+    paginator = Paginator(meetings_list, 2)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        meetings = paginator.page(page_number)
+        # obtain the objects for the desired page by calling the page() method of Paginator
+    except PageNotAnInteger:
+        # If page_number is not an integer deliver the first page
+        meetings = paginator.page(1)
+    except EmptyPage:
+        # If page_number is out of range deliver last page of results
+        meetings = paginator.page(paginator.num_pages)
+
     context = {
         'title': 'meetings',
         'meetings': meetings,
